@@ -6,12 +6,18 @@ const appointmentSchema = new mongoose.Schema({
     ref: "Doctor"
   },
   patientName: String,
+  
+  email: {       
+    type: String,
+    required: true
+  },
   date: String,
   time: String,
   status: {
     type: String,
     enum: ["Pending", "Approved", "Cancelled"],
     default: "Pending"
+    
   }
 }, { timestamps: true })
 

@@ -7,11 +7,22 @@ const mongoose = require("mongoose")
 // CREATE APPOINTMENT
 router.post("/", async (req, res) => {
   try {
-    const appointment = new Appointment(req.body);
-    const saved = await appointment.save();
-    res.status(201).json(saved);
+    console.log("BODY RECEIVED :", req.body)
+    const { doctorId, patientName, email, date, time } = req.body 
+
+    const appointment = new Appointment({
+      doctorId,
+      patientName,
+      email,  
+      date,
+      time
+    })
+
+    const saved = await appointment.save()
+    res.status(201).json(saved)
+
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ message: error.message })
   }
 });
 
@@ -31,7 +42,7 @@ router.get("/", async (req, res) => {
 router.get("/doctor/:id", async (req, res) => {
   const { id } = req.params
 
-  // ✅ CHECK VALID ID
+  // CHECK VALID ID
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({ message: "Invalid doctor ID" })
   }
