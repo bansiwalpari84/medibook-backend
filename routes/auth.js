@@ -19,7 +19,7 @@ router.post("/register", async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      role,
+      role: role === "doctor" ? "doctor" : "user",
       doctorId: role === "doctor" ? doctorId : null
     })
 
