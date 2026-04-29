@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const appointmentRoutes = require("./routes/appointmentRoutes");
 require("dotenv").config();
 
-const app = express(); // FIRST create app
+const app = express(); 
 
 // middleware
 app.use(cors());
@@ -15,7 +15,7 @@ app.use(express.json());
 //for appointment routes 
 app.use("/api/appointments", appointmentRoutes);
 
-// routes (AFTER app is created)
+// routes 
 const doctorRoutes = require("./routes/doctorRoutes");
 app.use("/api/doctors", doctorRoutes);
 const authRoutes = require("./routes/auth");
